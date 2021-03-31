@@ -39,3 +39,8 @@
 	transform: translateY(-50%);
 	cursor: pointer;
 }
+
+.add-task .add-task-btn,
+.add-task .add-task-btn:focus {
+	outline: none;
+}

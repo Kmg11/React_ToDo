@@ -29,6 +29,12 @@
 	background-color: transparent;
 }
 
+.tasks-list .tasks-container::-webkit-scrollbar {
+	appearance: none;
+	width: 5px;
+	background-color: transparent;
+}
+
 .tasks-list .tasks-container::-webkit-scrollbar-thumb {
 	background-color: #fff;
 	border-radius: 10px;
@@ -117,6 +123,12 @@
 	color: #fff;
 	font-size: 16px;
 	cursor: pointer;
+}
+
+.no-tasks {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
 }
 
 /* The Next Code For Delete Icon From Iconmoon Website */
