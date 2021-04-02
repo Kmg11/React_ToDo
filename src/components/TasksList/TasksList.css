@@ -85,8 +85,14 @@
 	transition: opacity .2s linear;
 }
 
-.tasks-list .task-done-btn:checked::before {
+.tasks-list .task-done-btn:checked::before,
+.tasks-list .task.done .task-done-btn::before {
 	opacity: 1;
+}
+
+.tasks-list .task-done-btn:checked + .task-text,
+.tasks-list .task.done .task-done-btn + .task-text {
+	text-decoration: line-through;
 }
 
 .tasks-list .task-done-btn,

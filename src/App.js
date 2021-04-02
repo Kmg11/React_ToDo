@@ -6,26 +6,55 @@ import './App.css';
 class App extends Component {
   state = {
     tasks: [
-      {text: "This Is Task Number 1"},
-      {text: "This Is Task Number 2"},
-      {text: "This Is Task Number 3"}
+      "This Is Task Number 1",
+      "This Is Task Number 2",
+      "This Is Task Number 3"
     ]
   }
 
   // Delete Task Function
-  deleteTask = (text) => {
-    const tasks = this.state.tasks.filter(task => task.text !== text);
+  deleteTask = (text, checkedTasks) => {
+    document.querySelectorAll(".task.done").forEach(task => {
+      const taskText = task.querySelector(".task-text").textContent;
+
+      if (taskText === text) {
+        task.classList.remove("done");
+        task.querySelector(".task-done-btn").removeAttribute("checked");
+
+        checkedTasks.forEach((checkedTask, index) => {
+          if (checkedTask === taskText) {
+            checkedTasks.splice(index, 1);
+          }
+        });
+      }
+
+    });
+
+    const tasks = this.state.tasks.filter(task => task !== text);
     this.setState({tasks});
   }
 
   // Add Task Function
   addNewTask = (value) => {
-    this.state.tasks.push({id: 5, text: value});
+    let notEqual = 0
 
-    this.setState({
-      tasks: this.state.tasks
+    this.state.tasks.forEach(task => {
+      if (task !== value && notEqual === 0) {
+        notEqual++;
+
+        this.state.tasks.push(value);
+        
+        this.setState({
+          tasks: this.state.tasks
+        });
+      } else if (task === value) {
+        notEqual++;
+        return false
+      }
     });
   }
+
+  notEqual = 0;
 
   render () {
     return (
