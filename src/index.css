@@ -1,3 +1,5 @@
+/* Start Global Style */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,3 +17,251 @@ body {
   background-image: linear-gradient(340deg, #2352D3, #4375FF);
   height: 100vh;
 }
+
+/* End Global Style */
+/* Start App Style */
+
+.App {
+  width: var(--app-width);
+  height: var(--app-height);
+  background-color: #fff;
+  border-radius: var(--app-border-radius);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.App::before {
+  content: '';
+  width: calc(var(--app-width) + 30px);
+  height: calc(var(--app-height) + 30px);
+  border: 2px solid #E7ECF4;
+  border-radius: var(--app-border-radius);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* End App Style */
+/* Start Form Style */
+
+.form {
+	background-color: #FFF;
+	border-radius: var(--app-border-radius) var(--app-border-radius) 0 0;
+	padding: 20px;
+  position: relative;
+}
+
+.form .add-task-input {
+	background-color: #0A1126;
+	border: none;
+	width: 100%;
+	padding: 20px 45px 20px 20px;
+	border-radius: 20px;
+	color: #DDDDE0;
+	font-size: 18px;
+}
+
+.form .add-task-input::placeholder {
+	color: #DDDDE0;
+	font-weight: 900;
+}
+
+.form .add-task-btn {
+	background: none;
+	border: none;
+	font-size: 30px;
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	right: 35px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.form .add-task-input,
+.form .add-task-input:focus,
+.form .add-task-btn,
+.form .add-task-btn:focus {
+	outline: none;
+}
+
+/* End Form Style */
+/* Start List Style */
+
+.tasks-container {
+	background-color: #4375ff;
+	height: 75%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-radius: 70px 70px var(--app-border-radius) var(--app-border-radius);
+	box-shadow: 0 -20px 15px -10px #C0D0FF;
+	padding: 10px;
+}
+
+.tasks-container .tasks-title {
+	text-align: center;
+	color: #CEDBFF;
+	font-size: 16px;
+	margin: 10px 0 30px;
+}
+
+.tasks-container .tasks-list {
+	height: 70%;
+	overflow: auto;
+	padding: 0 10px;
+}
+
+.tasks-container .tasks-list::-webkit-scrollbar {
+	appearance: none;
+	width: 5px;
+	background-color: transparent;
+}
+
+.tasks-container .tasks-list::-webkit-scrollbar {
+	appearance: none;
+	width: 5px;
+	background-color: transparent;
+}
+
+.tasks-container .tasks-list::-webkit-scrollbar-thumb {
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.tasks-container .task {
+	padding: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.tasks-container .task:first-of-type {
+	padding-top: 0;
+}
+
+.tasks-container .task:last-of-type {
+	padding-bottom: 0;
+}
+
+.tasks-container .task-done-btn {
+	/* The Next Variable Use For Task Done Btn & Pseudo ELement */
+	--checkbox-size: 18px;
+
+	position: relative;
+	appearance: none;
+	width: var(--checkbox-size);
+	height: var(--checkbox-size);
+	border: 1px solid #fff;
+	border-radius: 50%;
+	margin-right: 15px;
+	cursor: pointer;
+	position: relative;
+	top: 3px;
+}
+
+.tasks-container .task-done-btn::before {
+	content: '';
+	width: calc(var(--checkbox-size) - 5px);
+	height: calc(var(--checkbox-size) - 5px);
+	border-radius: 50%;
+	background-color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity .2s linear;
+}
+
+.tasks-container .task-done-btn:checked::before,
+.tasks-container .task.done .task-done-btn::before {
+	opacity: 1;
+}
+
+.tasks-container .task-done-btn:checked + .task-text,
+.tasks-container .task.done .task-done-btn + .task-text {
+	text-decoration: line-through;
+}
+
+.tasks-container .task-done-btn,
+.tasks-container .task-done-btn:focus {
+	outline: none;
+}
+
+.tasks-container .task-text {
+	color: #fff;
+	font-size: 20px;
+}
+
+.tasks-container .task-delete-btn {
+	cursor: pointer;
+	color: #fff;
+	text-shadow: 0 0 10px transparent;
+	margin-left: 5px;
+	transition: all 0.2s linear;
+}
+
+.tasks-container .task-delete-btn:hover {
+	color: #ff1100;
+	text-shadow: 0 0 10px #fff;
+}
+
+.tasks-container .done-all-btn {
+  display: block;
+  margin: auto;
+  margin-top: 16px;
+	border: none;
+	background: none;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.no-tasks {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* End List Style */
+
+/* The Next Code For Delete Icon From Iconmoon Website */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?golww2');
+  src:  url('fonts/icomoon.eot?golww2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?golww2') format('truetype'),
+    url('fonts/icomoon.woff?golww2') format('woff'),
+    url('fonts/icomoon.svg?golww2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bin:before {
+  content: "\e9ac";
+}
+
+/* The Previous Code For Delete Icon From Iconmoon Website */

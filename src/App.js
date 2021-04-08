@@ -1,69 +1,67 @@
-import { Component } from 'react';
-import AddTask from './components/AddTask/AddTask';
-import TasksList from './components/TasksList/TasksList';
-import './App.css';
+import { Component } from "react";
+import Form from "./Components/Form";
+import List from "./Components/List";
 
 class App extends Component {
-  state = {
-    tasks: [
-      "This Is Task Number 1",
-      "This Is Task Number 2",
-      "This Is Task Number 3"
-    ]
-  }
+	// Main State
+	state = {
+		tasks: [
+			{ text: "Task 1", completed: false },
+			{ text: "Task 2", completed: false },
+			{ text: "Task 3", completed: false },
+		],
+		current: "",
+	};
 
-  // Delete Task Function
-  deleteTask = (text, checkedTasks) => {
-    document.querySelectorAll(".task.done").forEach(task => {
-      const taskText = task.querySelector(".task-text").textContent;
+	// handleChange
+	handleChange = (e) => {
+		this.setState({ current: e.target.value });
+	};
 
-      if (taskText === text) {
-        task.classList.remove("done");
-        task.querySelector(".task-done-btn").removeAttribute("checked");
+	// addTask
+	addTask = (e) => {
+		e.preventDefault();
 
-        checkedTasks.forEach((checkedTask, index) => {
-          if (checkedTask === taskText) {
-            checkedTasks.splice(index, 1);
-          }
-        });
-      }
+		const { tasks, current } = this.state;
 
-    });
+		if (current !== "") {
+			tasks.unshift({ text: current, completed: false });
+			this.setState({ tasks, current: "" });
+		} else {
+			alert("Sorry You Can't Add Empty Task");
+		}
+	};
 
-    const tasks = this.state.tasks.filter(task => task !== text);
-    this.setState({tasks});
-  }
+	// deleteTask
+	deleteTask = (index) => {
+		const tasks = this.state.tasks;
+		tasks.splice(index, 1);
+		this.setState({ tasks });
+	};
 
-  // Add Task Function
-  addNewTask = (value) => {
-    let notEqual = 0
+	// completeTask
+	completeTask = (index) => {
+		const tasks = this.state.tasks;
+		tasks[index].completed = !tasks[index].completed;
+		this.setState({ tasks });
+	};
 
-    this.state.tasks.forEach(task => {
-      if (task !== value && notEqual === 0) {
-        notEqual++;
-
-        this.state.tasks.push(value);
-        
-        this.setState({
-          tasks: this.state.tasks
-        });
-      } else if (task === value) {
-        notEqual++;
-        return false
-      }
-    });
-  }
-
-  notEqual = 0;
-
-  render () {
-    return (
-      <div className="App">
-        <AddTask addNewTask={this.addNewTask} />
-        <TasksList tasks={this.state.tasks} deleteTask={this.deleteTask} />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div className="App">
+				<Form
+					inputValue={this.state.current}
+					addTask={this.addTask}
+					handleChange={this.handleChange}
+				/>
+				<List
+					tasks={this.state.tasks}
+					deleteTask={this.deleteTask}
+					completeTask={this.completeTask}
+				/>
+			</div>
+		);
+	}
 }
 
 export default App;
