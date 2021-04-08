@@ -46,6 +46,15 @@ class App extends Component {
 		this.setState({ tasks });
 	};
 
+	// completeAllTasks
+	completeAllTasks = () => {
+		const tasks = this.state.tasks;
+		tasks.forEach((task, index) => {
+			tasks[index].completed = true;
+		});
+		this.setState({tasks});
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -58,6 +67,7 @@ class App extends Component {
 					tasks={this.state.tasks}
 					deleteTask={this.deleteTask}
 					completeTask={this.completeTask}
+					completeAllTasks={this.completeAllTasks}
 				/>
 			</div>
 		);

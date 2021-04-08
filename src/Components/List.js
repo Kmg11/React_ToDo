@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class List extends Component {
 	render() {
-		const { tasks, deleteTask, completeTask } = this.props;
+		const { tasks, deleteTask, completeTask, completeAllTasks } = this.props;
 		const tasksList = tasks.map((task, index) => {
 			return (
 				<div key={index} className="task">
@@ -10,7 +10,8 @@ class List extends Component {
 						<input
 							className="task-done-btn"
 							type="checkbox"
-							onClick={() => {completeTask(index)}}
+							checked={task.completed}
+							onChange={() => {completeTask(index)}}
 						></input>
 						<span className="task-text">{task.text}</span>
 					</div>
@@ -35,7 +36,7 @@ class List extends Component {
 						<div className="no-tasks">No Tasks Added</div>
 					)}
 				</div>
-				<button className="done-all-btn">
+				<button className="done-all-btn" onClick={completeAllTasks}>
 					<span>Done All</span>
 				</button>
 			</div>
