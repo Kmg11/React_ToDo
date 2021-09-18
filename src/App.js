@@ -52,8 +52,8 @@ class App extends Component {
 		tasks.forEach((task, index) => {
 			tasks[index].completed = true;
 		});
-		this.setState({tasks});
-	}
+		this.setState({ tasks });
+	};
 
 	render() {
 		return (
